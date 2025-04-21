@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: backend
-          image: ml_ops_assignemnt2-backend:latest
+          image: backend:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 5000
           env:

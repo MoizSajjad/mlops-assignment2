@@ -1,3 +1,4 @@
+
 # MLOps Assignment 2 - Full Stack Microservices App Deployment with Minikube
 
 ### 👨‍💻 Author: Muhammad Moiz Sajjad
@@ -52,6 +53,7 @@ ML_OPS_Assignemnt2/
 - ✅ PostgreSQL integration
 - ✅ Docker containerization of all services
 - ✅ Kubernetes deployment using Minikube
+- ✅ Frontend and Backend services are now up and running successfully
 
 ---
 
@@ -64,32 +66,41 @@ ML_OPS_Assignemnt2/
 - VS Code or any code editor
 
 ### 2. Run Locally with Docker Compose
+To run the application locally, use Docker Compose:
 ```bash
 docker-compose up --build
 ```
 Visit: `http://localhost` to access the frontend.
 
 ### 3. Deploy on Minikube (Kubernetes)
-```powershell
-# Point Docker to Minikube daemon
-& minikube -p minikube docker-env --shell powershell | Invoke-Expression
+To deploy the application on Minikube, follow these steps:
 
-# Build images inside Minikube Docker daemon
-docker build -t ml_ops_assignemnt2-backend:latest -f backend/Dockerfile ./backend
+1. **Point Docker to Minikube Daemon:**
+   ```powershell
+   & minikube -p minikube docker-env --shell powershell | Invoke-Expression
+   ```
 
-docker build -t ml_ops_assignemnt2-frontend:latest -f frontend/Dockerfile ./frontend
+2. **Build Docker Images Inside Minikube Context:**
+   ```bash
+   docker build -t ml_ops_assignemnt2-backend:latest -f backend/Dockerfile ./backend
+   docker build -t ml_ops_assignemnt2-frontend:latest -f frontend/Dockerfile ./frontend
+   ```
 
-# Apply Kubernetes configs
-kubectl apply -f k8s
+3. **Apply Kubernetes Configurations:**
+   ```bash
+   kubectl apply -f k8s
+   ```
 
-# Access frontend via NodePort
-minikube service frontend
-```
+4. **Access Frontend Service via NodePort:**
+   ```bash
+   minikube service frontend
+   ```
 
 ---
 
-## ❌ Known Issues
-- Due to environment config issues, `ImagePullBackOff` error may appear if Docker images are not properly built *inside* Minikube context.
+##  Known Issues
+- **ImagePullBackOff** error may appear if Docker images are not built inside the Minikube context. Make sure you follow the instructions to configure Docker to use Minikube’s Docker daemon properly.
+
 - Make sure `docker info` returns `Name: minikube` before building images.
 
 ---
@@ -99,8 +110,6 @@ GitHub Repo: [https://github.com/MoizSajjad/mlops-assignment2](https://github.co
 
 ---
 
-## 📷 Screenshots (Optional)
-_Add screenshots here if required by instructor._
 
 ---
 
@@ -108,8 +117,10 @@ _Add screenshots here if required by instructor._
 - [x] Authentication System (Login, Signup, Forgot Password)
 - [x] Docker Containerization
 - [x] Kubernetes Deployment
-- [ ] ✅ Pods for frontend/backend not running due to ImagePullBackOff
+- [x] Pods for frontend/backend running successfully
 
 ---
 
 Feel free to fork, improve, or ask questions if you'd like to explore more!
+
+---
